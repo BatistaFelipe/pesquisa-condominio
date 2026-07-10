@@ -1,7 +1,10 @@
 import sqlite3
+import os
+
+db_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "condominiums.db")
 
 def get_db_conn() -> sqlite3.Connection:
-      return sqlite3.connect("condominiums.db")
+      return sqlite3.connect(db_file)
 
 def search_by_address(conn, search_term):
     cursor = conn.cursor()
