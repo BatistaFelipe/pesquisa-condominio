@@ -53,11 +53,12 @@ Available options:
 
 | Option | Action                  |
 |--------|-------------------------|
-| 1      | Search by address       |
-| 2      | Search by name          |
-| 3      | Add a new condominium   |
-| 4      | Delete by ID            |
-| 0      | Exit                    |
+| 1      | Search by address           |
+| 2      | Search by name              |
+| 3      | Add a new condominium       |
+| 4      | Delete by ID                |
+| 5      | Search by list of names (`;`-separated) |
+| 0      | Exit                        |
 
 ## Project structure
 

@@ -36,6 +36,16 @@ def search_by_name(conn, search_term):
 
     return rows
 
+def search_list_by_name(conn: sqlite3.Connection, list_names: list[str]) -> list[tuple]:
+    results = []
+    for name in list_names:
+        name = name.strip()
+        if not name:
+            continue
+        results.extend(search_by_name(conn, name))
+
+    return results
+
 def delete_by_id(conn, id):
     cursor = conn.cursor()
     cursor.execute('''

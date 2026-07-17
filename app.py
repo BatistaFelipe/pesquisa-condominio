@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import sys
 from db import (get_db_conn, search_by_address,
-    search_by_name, delete_by_id, add_condominium)
+    search_by_name, delete_by_id, add_condominium,
+    search_list_by_name)
 
 conn = get_db_conn()
 
@@ -37,6 +38,14 @@ def menu_add_condominium():
     new_item = add_condominium(conn, name, address)
     print(f"| ID: {new_item[0]} | Nome: {new_item[1]} | Endereço: {new_item[2]} |")
 
+def menu_search_list_by_name():
+    search_list = input("Digite os nomes dos condomínios separados por [;]: ")
+    list_names = search_list.split(";")
+    print("\n")
+    for row in search_list_by_name(conn, list_names):
+        print(f"| ID: {row[0]} | Nome: {row[1]} | Endereço: {row[2]} |")
+    print("\n")
+
 def menu_exit():
     sys.exit(0)
 
@@ -48,6 +57,7 @@ def main():
             '2': menu_search_by_name,
             '3': menu_add_condominium,
             '4': menu_delete_by_id,
+            '5': menu_search_list_by_name,
         }
 
         while True:
@@ -56,9 +66,10 @@ def main():
             print("2. Buscar pelo nome")
             print("3. Criar condomínio")
             print("4. Apagar condomínio")
+            print("5. Buscar lista pelo nome")
             print("0. Sair")
 
-            choice = input("Selecione a opção (0-4): ").strip()
+            choice = input("Selecione a opção (0-5): ").strip()
 
             action = menu_options.get(choice)
 
