@@ -6,24 +6,24 @@ from db import (get_db_conn, search_by_address,
 
 conn = get_db_conn()
 
-def get_valid_integer(prompt_message):
+def get_valid_integer(prompt_message: str) -> int:
     while True:
         try:
             return int(input(prompt_message))
         except ValueError:
             print("Entrada inválida, o ID deve ser um número.")
 
-def menu_search_by_address():
+def menu_search_by_address() -> None:
     search_term = input("Digite o endereço: ").strip().lower()
     for row in search_by_address(conn, search_term):
         print(f"| ID: {row[0]} | Nome: {row[1]} | Endereço: {row[2]} |")
 
-def menu_search_by_name():
+def menu_search_by_name() -> None:
     search_term = input("Digite o nome: ").strip().lower()
     for row in search_by_name(conn, search_term):
         print(f"| ID: {row[0]} | Nome: {row[1]} | Endereço: {row[2]} |")
 
-def menu_delete_by_id():
+def menu_delete_by_id() -> None:
     condo_id = get_valid_integer("Digite o ID: ")
     deleted_item = delete_by_id(conn, condo_id)
     if not deleted_item:
@@ -32,24 +32,23 @@ def menu_delete_by_id():
     print(f"| ID: {deleted_item[0]} | Nome: {deleted_item[1]} | Endereço: {deleted_item[2]} |")
 
 
-def menu_add_condominium():
+def menu_add_condominium() -> None:
     name = input("Digite o nome: ")
     address = input("Digite o endereço completo: ")
     new_item = add_condominium(conn, name, address)
-    print(f"| ID: {new_item[0]} | Nome: {new_item[1]} | Endereço: {new_item[2]} |")
+    if new_item:
+        print(f"| ID: {new_item[0]} | Nome: {new_item[1]} | Endereço: {new_item[2]} |")
 
-def menu_search_list_by_name():
+def menu_search_list_by_name() -> None:
     search_list = input("Digite os nomes dos condomínios separados por [;]: ")
     list_names = search_list.split(";")
-    print("\n")
     for row in search_list_by_name(conn, list_names):
         print(f"| ID: {row[0]} | Nome: {row[1]} | Endereço: {row[2]} |")
-    print("\n")
 
-def menu_exit():
+def menu_exit() -> None:
     sys.exit(0)
 
-def main():
+def main() -> None:
     try:
         menu_options = {
             '0': menu_exit,
