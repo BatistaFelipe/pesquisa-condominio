@@ -88,6 +88,20 @@ Run the suite:
 pytest -v
 ```
 
+## Linting and formatting
+
+This project uses [Ruff](https://docs.astral.sh/ruff/) for linting and formatting.
+
+Install it with the dev dependencies (see [Tests](#tests)), then run:
+
+```bash
+ruff check .        # lint
+ruff check . --fix  # lint with auto-fix
+ruff format .       # format
+```
+
+Configuration lives in `pyproject.toml` under `[tool.ruff]`.
+
 ## Notes
 
 - `condominiums.db` and `init_db.csv` are gitignored — real data must not be committed.
