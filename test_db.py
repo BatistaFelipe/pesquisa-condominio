@@ -10,6 +10,7 @@ from db import (
     search_by_name,
 )
 
+
 @pytest.fixture
 def conn() -> Iterator[sqlite3.Connection]:
     connection = sqlite3.connect(":memory:")

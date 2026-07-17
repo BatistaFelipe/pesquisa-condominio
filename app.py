@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 import sys
-from db import (get_db_conn, search_by_address,
-    search_by_name, delete_by_id, add_condominium,
-    search_list_by_name)
+
+from db import (
+    add_condominium,
+    delete_by_id,
+    get_db_conn,
+    search_by_address,
+    search_by_name,
+    search_list_by_name,
+)
 
 conn = get_db_conn()
 

@@ -1,5 +1,7 @@
 import csv
+
 from db import get_db_conn
+
 
 def create_table(conn):
     cursor = conn.cursor()
@@ -13,7 +15,7 @@ def create_table(conn):
     conn.commit()
 
 def populate_db(conn):
-    with open('init_db.csv', 'r', encoding='utf-8') as file:
+    with open('init_db.csv', encoding='utf-8') as file:
         csv_reader = csv.reader(file, delimiter=';')
         cursor = conn.cursor()
         cursor.executemany('INSERT INTO condominiums (name, address) VALUES (?, ?)', csv_reader)
